@@ -1,7 +1,7 @@
-17MonIP Golang Lib
+﻿17MonIP Golang Lib
 ======
 
-IP search based on 17monipdb, the IP database parser for china with golang.
+IP search based on 17monipdb, the IP database for china with golang.
 
 
 install
