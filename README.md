@@ -38,4 +38,4 @@ BSD
 
 ## Thanks
 
-Paul Gao: for his 17monipdb.dat data.
+* Paul Gao: for his 17monipdb.dat data.
