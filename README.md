@@ -32,10 +32,6 @@ example
 
 BSD
 
-## Author
-
-* axgle
-
 ## Version
 
 0.0.2 remove binary package
