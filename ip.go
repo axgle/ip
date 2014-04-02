@@ -1,7 +1,6 @@
 package ip
 
 import (
-	"encoding/binary"
 	"io/ioutil"
 	"log"
 	"net"
@@ -31,7 +30,7 @@ func Find(ip_address string) string {
 	ip_index = buffer[4:ip_offset]
 	nip := ip2long(ip_address)
 
-	start_len := binary.LittleEndian.Uint32(ip_index[tmp_offset : tmp_offset+4])
+	start_len := bytesLittleEndianToUint32(ip_index[tmp_offset : tmp_offset+4])
 
 	var index_offset uint32 = 0
 	var index_length uint32 = 0
@@ -41,7 +40,7 @@ func Find(ip_address string) string {
 			index_length = 0xFF & uint32(ip_index[start+7])
 			tmp := ip_index[start+4 : start+7]
 			tmp = append(tmp, 0x0)
-			index_offset = binary.LittleEndian.Uint32(tmp)
+			index_offset = bytesLittleEndianToUint32(tmp)
 			break
 		}
 	}
@@ -57,8 +56,13 @@ func Find(ip_address string) string {
 
 }
 
+//binary.BigEndian.Uint32(b)
 func bytesBigEndianToUint32(b []byte) uint32 {
-	return binary.BigEndian.Uint32(b)
+	return uint32(b[3]) | uint32(b[2])<<8 | uint32(b[1])<<16 | uint32(b[0])<<24
+}
+
+func bytesLittleEndianToUint32(b []byte) uint32 {
+	return uint32(b[0]) | uint32(b[1])<<8 | uint32(b[2])<<16 | uint32(b[3])<<24
 }
 
 func ip2long(ipstr string) uint32 {
