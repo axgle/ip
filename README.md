@@ -35,9 +35,11 @@ BSD
 ## Author
 
 * axgle
+
 ## Version
 
 0.0.2 remove binary package
+
 0.0.1 init
 
 ## Thanks
