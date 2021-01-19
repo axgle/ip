@@ -38,7 +38,7 @@ func Find(ip_address string) string {
 	for start := start_len*8 + 1024; start < ip_offset-1028; start += 8 {
 		if bytesBigEndianToUint32(ip_index[start:start+4]) >= nip {
 			index_length = 0xFF & uint32(ip_index[start+7])
-			tmp := ip_index[start+4 : start+7]
+			tmp := append(make([]byte, 0, 4), ip_index[start+4:start+7]...)
 			tmp = append(tmp, 0x0)
 			index_offset = bytesLittleEndianToUint32(tmp)
 			break
